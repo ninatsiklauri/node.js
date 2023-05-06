@@ -68,6 +68,6 @@ app.delete("/:id", async (req, res) => {
   }
 });
 
-app.listen(8000, () => {
+app.listen(process.env.PORT, () => {
   console.log("Server started on port 8000");
 });
