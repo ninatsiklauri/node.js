@@ -51,39 +51,7 @@ app.post("/", async (req, res) => {
     }
   });
 
-  app.put("/:id", async (req, res) => {
-    try {
-      const { id } = req.params;
-      const { name, email, gender, address, phone } = req.body;
   
-      let data2 = fs.readFileSync("./data.json", "utf8");
-      const data = JSON.parse(data2);
-  
-      const index = data.findIndex((item) => item.id === parseInt(id));
-      if (index === -1) {
-        return res.status(404).send("User not found");
-      }
-  
-      const updatedPerson = {
-        id: parseInt(id),
-        name: name || data[index].name,
-        email: email || data[index].email,
-        gender: gender || data[index].gender,
-        address: address || data[index].address,
-        phone: phone || data[index].phone,
-      };
-  
-      data[index] = updatedPerson;
-  
-      fs.writeFile("./data.json", JSON.stringify(data), (err) => {
-        if (err) throw err;
-        res.json(updatedPerson);
-      });
-    } catch (err) {
-      console.error(err);
-      res.status(500).send("Internal Server Error");
-    }
-  });
 
 app.delete("/:id", async (req, res) => {
   try {
